@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Vue Project!</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- View: 유저 인터페이스 -->
+    <div id="app">
+        <h2> {{message}}</h2>
+    </div>
+
+    <script type="text/javascript">
+        /** 
+         * Vue에 기본적인 구조입니다. (MVVM 패턴)
+         * Vue 객체의 el 속성은 HTML 요소를 나타냅니다.
+         * VUe 객채의 data 속성은 모델 객체를 참조합니다.
+         * 데이터(모델)가 변경되면 뷰모델(vm) 객체는 즉시 HTML(View) 요소에 반영시킵니다.
+         */
+
+        // Model: 도메인 특화 데이터
+        var model = {
+            message: 'Hello Vue!'
+        }
+
+        // View Model: 상태와 연산
+        var vm = new Vue({
+            el: '#app',
+            data: model
+        })
+    </script>
+</body>
+
+</html>

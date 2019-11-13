@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conditionals and Loops</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .color-green {
+            color: green;
+        }
+        
+        .color-red {
+            color: red;
+        }
+        
+        .m_b_48 {
+            margin-bottom: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- View: 유저 인터페이스 -->
+    <div id="app">
+        <div class="m_b_48">
+            <!-- 개발자 도구에서 v-if와 v-show가 어떻게 동작하나 확인해보세요. -->
+            <button type="button" @click="visibleFlag = !visibleFlag;">Toggle</button>
+            <h2 v-if="visibleFlag">v-if는 조건이 True일 경우에만 엘리먼트를 생성합니다.</h2>
+            <h2 v-show="visibleFlag">v-show는 엘리먼트가 생성되지만 조건이 True일 경우에만 화면상에 출력됩니다.</h2>
+        </div>
+
+        <div class="m_b_48">
+            <button type="button" @click="count++;">CountUp</button>
+            <h2 v-if="count > 10">v-if 조건: count > 10 / 현재 count={{ count }}</h2>
+            <h2 v-else-if="count > 5">v-else-if 조건: count > 5 / count={{ count }}</h2>
+            <h2 v-else>v-else 조건: 모든 조건 불충족시 기본 출력 / count={{ count }}</h2>
+        </div>
+
+        <!-- Loop Render -->
+        <div class="m_b_48">
+            <p>v-for 반복 렌더링 예제입니다. (Array)</p>
+            <ul>
+                <li v-for="(item, index) in contact" v-bind:class="[{'color-green': item.address === '강원' }, {'color-red': item.address === '서울'}]">
+                    no: {{ index }} / name: {{ item.name }} / tel: {{ item.tel }} / address: {{ item.address }}
+                </li>
+            </ul>
+        </div>
+
+        <!-- Loop Render -->
+        <div class="m_b_48">
+            <p>v-for 반복 렌더링 예제입니다. (Object)</p>
+            <select id="resions">
+              <option disabled="disabled" seleted>지역을 선택하세요.</option>
+              <option v-for="(val, key) in regions" v-bind:value="key">{{ val }}</option>
+            </select>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Model: 도메인 특화 데이터
+        var model = {
+            visibleFlag: false,
+            count: 0,
+            contact: [{
+                name: '설현',
+                tel: '010-0000-0001',
+                address: '서울'
+            }, {
+                name: '혜리',
+                tel: '010-0000-0002',
+                address: '경기'
+            }, {
+                name: '경리',
+                tel: '010-0000-0003',
+                address: '강원'
+            }, {
+                name: '민아',
+                tel: '010-0000-0004',
+                address: '경상'
+            }],
+            regions: {
+                'a': 'Asia',
+                'b': 'America',
+                'c': 'Europe',
+                'd': 'Africa',
+                'e': 'Oceania',
+            }
+        }
+
+        // View Model: 상태와 연산
+        var vm = new Vue({
+            el: '#app',
+            data: model
+        })
+    </script>
+</body>
+
+</html>

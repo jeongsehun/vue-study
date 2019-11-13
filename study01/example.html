@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue study01 Example!</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .m_b_48 {
+            margin-bottom: 48px;
+        }
+        
+        .t_c_red {
+            color: red;
+        }
+        
+        .t_c_green {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- View: 유저 인터페이스 -->
+    <div id="app">
+        <!-- 몸풀기용: Message를 데이터 바인딩하여 화면에 출력하세요. -->
+        <h2 class="m_b_48"></h2>
+
+        <!-- 예제 1번 -->
+        <div id="example1" class="m_b_48">
+            <!-- count 데이터를 UP&DOWN 시켜보세요. -->
+            <button type="button" @click="">CountUP!</button>
+            <button type="button" @click="">CountDown!</button>
+            <!-- count 20 이상이면 "낙타", 데이터의 값이 10 이상이면 "기린" 그 외에는 "하마"를 출력해주세요. -->
+            <p>낙타</p>
+            <p>기린</p>
+            <p>하마</p>
+        </div>
+
+        <!-- 예제 2번 -->
+        <div id="example2" class="m_b_48">
+            <span>이름검색: </span>
+            <!-- SearchText를 데이터 바인딩하세요. 이름이 입력되면 아래 테이블에 상태 변화가 일어납니다. -->
+            <input type="text">
+            <table>
+                <thead>
+                    <th>NO.</th>
+                    <th>이름</th>
+                    <th>연락처</th>
+                    <th>주소</th>
+                </thead>
+                <tbody>
+                    <!-- 
+                  contact를 반복 렌더로 출력하세요.
+                  이름검색에 입력된 이름과 같을 경우, 텍스트 컬러는 Green
+                  주소가 서울일 경우, 텍스트 컬러는 Red가 되도록 처리하세요.
+                -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript ">
+        /** 
+         * Vue에 기본적인 구조입니다. (MVVM 패턴)
+         * Vue 객체의 el 속성은 HTML 요소를 나타냅니다.
+         * VUe 객채의 data 속성은 모델 객체를 참조합니다.
+         * 데이터(모델)가 변경되면 뷰모델(vm) 객체는 즉시 HTML(View) 요소에 반영시킵니다.
+         */
+
+        // Model: 도메인 특화 데이터
+        var model = {
+            message: 'Vue 첫번째 스터디 내용을 활용한 예제입니다.',
+            count: 0,
+            searchText: '',
+            contact: [{
+                name: '설현',
+                tel: '010-0000-0001',
+                address: '서울'
+            }, {
+                name: '혜리',
+                tel: '010-0000-0002',
+                address: '경기'
+            }, {
+                name: '경리',
+                tel: '010-0000-0003',
+                address: '강원'
+            }, {
+                name: '민아',
+                tel: '010-0000-0004',
+                address: '서울'
+            }, {
+                name: '쯔위',
+                tel: '010-0000-0124',
+                address: '전북'
+            }, {
+                name: '사나',
+                tel: '010-0000-1224',
+                address: '전남'
+            }, {
+                name: '모모',
+                tel: '010-0000-3532',
+                address: '경기'
+            }, {
+                name: '소진',
+                tel: '010-0000-2535',
+                address: '강원'
+            }],
+        }
+
+        // View Model: 상태와 연산
+        var vm = new Vue({
+            el: '#app',
+            data: model
+        })
+    </script>
+</body>
+
+</html>

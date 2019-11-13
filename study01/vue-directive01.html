@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Declarative-Rendering</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .m_b_48 {
+            margin-bottom: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- View: 유저 인터페이스 -->
+    <div id="app">
+        <div class="m_b_48">
+            <h2> {{message}}</h2>
+            <h2 v-text="message"></h2>
+        </div>
+
+        <!-- innerHTML 속성에 연결됨 -->
+        <div class="m_b_48">
+            <div v-html="htmlMessage"></div>
+        </div>
+
+        <!-- v-bind Directive / 단방향 데이터 바인딩 -->
+        <div class="m_b_48">
+            <p>v-bind 디렉티브는 단방향 데이터 바인딩입니다. 인풋에 값을 변경하면 모델 객체의 값이 변하지 않습니다. v-bind:를 매번 쓰는대신 : 약어로 대체 가능합니다. 예시) :value="message" </p>
+            <input id="bindTest1" type="text" v-bind:value="message">
+            <br>
+            <img v-bind:src="imagePath">
+        </div>
+
+        <!-- v-model Directive / 양방향 데이터 바인딩 -->
+        <div class="m_b_48">
+            <p>v-model 디렉티브는 양방향 데이터 바인딩입니다. 인풋에 값을 변경하면 모델 객체의 값도 변합니다.</p>
+            <input id="bindTest1" type="text" v-model="message">
+            <p>message: {{ message }}</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Model: 도메인 특화 데이터
+        var model = {
+            message: 'Hello Vue!',
+            htmlMessage: '<h2>bind v-html</h2>',
+            imagePath: 'https://s.pstatic.net/static/www/mobile/edit/2019/1113/mobile_153240957115.png'
+        }
+
+        // View Model: 상태와 연산
+        var vm = new Vue({
+            el: '#app',
+            data: model
+        })
+    </script>
+</body>
+
+</html>
