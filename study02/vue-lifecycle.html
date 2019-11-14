@@ -1,4 +1,3 @@
-a
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -6,27 +5,83 @@ a
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue Compouted</title>
+    <title>Vue Lifecycle</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
         .m_b_48 {
             margin-bottom: 48px;
+        }
+        
+        .t_c_red {
+            color: red;
+        }
+        
+        .t_c_blue {
+            color: blue
         }
     </style>
 </head>
 
 <body>
     <div id="app">
+        <div class=m_b_48>
+            <div ref="test" id="test" :class="[{'t_c_red': !flag}, { 't_c_blue': flag}]">test</div>
+            <button type="button" @click="flag = !flag">toggle</button>
+        </div>
     </div>
 
     <script type="text/javascript">
         var vm = new Vue({
             el: '#app',
-            data: {},
-            computed: {},
+            data: {
+                num: 0,
+                flag: false
+            },
             watch: {},
-            methods: {},
-            created: function() {}
+            computed: {},
+            methods: {
+                test: function() {
+                    this.$destroy()
+                }
+            },
+            beforeCreate: function() {
+                // Vue 인스터스가 생성되고 데이터에 대한 관찰 기능 및 이벤트 감시자 설정 전 호출
+                console.log('beforeCreate!')
+            },
+            created: function() {
+                // Vue 인스터스가 생성된 후에 데이터에 대한 관찰 기능, 계산형 속성, 메서드, 감시자 설정이 완료된 후에 호출
+                console.log('created!')
+            },
+            beforeMount() {
+                // 마운트가 시작되기전
+                console.log('beforeMount')
+            },
+            mounted() {
+                // el에 Vue인스턴스의 데이터가 마운트 된 후에 호출
+                console.log('mounted!')
+            },
+            beforeUpdate() {
+                // 가상 DOM이 렌더링, 패치되기전에 데이터가 변경될때 호출 
+                // 추가로 다시 렌더링하지는 않는다.
+                console.log('beforeUpdate!')
+
+            },
+            updated() {
+                // 데이터의 변경으로 가상 DOM이 다시 렌더링되고 패치된 후에 호출 
+                // 호출되었을 때는 이미 컴포넌트의 DOM이 업데이트된 상태
+                // DOM에 종속성이 있는 연산을 이 단계에서 수행할 수 있다.
+                console.log('updated!')
+                console.log('num=', this.num)
+            },
+            beforeDestroy() {
+                // Vue 인스턴스가 제거되기 전에 호출
+                console.log('in beforeDestroy!')
+            },
+            destroyed() {
+                // Vue 인스턴스가 제거된 후에 호출 
+                // 호출되었을 때는 Vue 인스턴스의 모든 디렉티브의 바인딩이 해제되고, 이벤트 연결도 모두 제거됨
+                console.log('in beforeDdestroyedestroy!')
+            }
         });
     </script>
 </body>

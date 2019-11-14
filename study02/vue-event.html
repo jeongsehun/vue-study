@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Lifecycle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .m_b_48 {
+            margin-bottom: 48px;
+        }
+        
+        .t_c_red {
+            color: red;
+        }
+        
+        .t_c_blue {
+            color: blue
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="m_b_48">
+            <div id="example" @click="test">
+                <button type="button" @click.stop.once="test2">test</div>
+            </div>
+
+            <div class=""m_b_48>
+              <a href="#" @click.prevent="test()" target="_blank">
+                페이스북으로 가즈아
+              </a>
+            </div>
+
+            <div class="m_b_48">
+                <input @keyup.enter="test">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                amount: 0,
+                balance: 0
+            },
+            watch: {},
+            computed: {},
+            methods: {
+                test: function(e) {
+                    console.log('test!')
+                },
+                test2: function(e) {
+                  console.log('test2!')
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

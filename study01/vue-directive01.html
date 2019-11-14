@@ -42,6 +42,39 @@
             <input id="bindTest1" type="text" v-model="message">
             <p>message: {{ message }}</p>
         </div>
+
+        <div class="m_b_48">
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedNames">
+            <label for="john">John</label>
+            <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+            <label for="mike">Mike</label>
+            <br>
+            <span>체크한 이름: {{ checkedNames }}</span>
+        </div>
+
+        <div class="m_b_48">
+            <input type="radio" id="one" value="One" v-model="picked">
+            <label for="one">One</label>
+            <br>
+            <input type="radio" id="two" value="Two" v-model="picked">
+            <label for="two">Two</label>
+            <br>
+            <input type="radio" id="test" value="test" v-model="picked">
+            <label for="two">test</label>
+            <br>
+            <span>선택: {{ picked }}</span>
+        </div>
+
+        <div class="m_b_48">
+            <select v-model="selected">
+                        <option v-for="option in options" v-bind:value="option.value">
+                          {{ option.text }}
+                        </option>
+                      </select>
+            <span>Selected: {{ selected }}</span>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -49,7 +82,20 @@
         var model = {
             message: 'Hello Vue!',
             htmlMessage: '<h2>bind v-html</h2>',
-            imagePath: 'https://s.pstatic.net/static/www/mobile/edit/2019/1113/mobile_153240957115.png'
+            imagePath: 'https://s.pstatic.net/static/www/mobile/edit/2019/1113/mobile_153240957115.png',
+            checkedNames: [],
+            picked: '',
+            selected: '',
+            options: [{
+                text: 'One',
+                value: 'A'
+            }, {
+                text: 'Two',
+                value: 'B'
+            }, {
+                text: 'Three',
+                value: 'C'
+            }]
         }
 
         // View Model: 상태와 연산
