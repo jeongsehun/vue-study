@@ -18,11 +18,14 @@
     <div id="app">
         <!-- example01 -->
         <div class="m_b_48">
+            <p>computed를 이용한 데이터 업데이트</p>
             <input type="text" v-model="num" /><br /> 1부터 입력된 수까지의 합: <span>{{sum}}</span>
         </div>
 
         <!-- example02-->
         <div class="m_b_48">
+            <p>method를 이용한 데이터 업데이트</p>
+            <input type="text" v-model="num" /><br /> 1부터 입력된 수까지의 합: <span>{{ fnSum }}</span>
         </div>
     </div>
 
@@ -31,23 +34,27 @@
             el: '#app',
             data: {
                 num: 0,
-                countries: [{
-                    no: 1,
-                    name: '미국',
-                    capital: '워싱턴DC',
-                    region: 'America'
-                }, {
-                    no: 2,
-                    name: '프랑스',
-                    capital: '파리',
-                    region: 'europe'
-                }]
+                fnSum: 0
             },
             computed: {
                 sum: function() {
                     var n = Number(this.num);
                     if (Number.isNaN(n) || n < 1) return 0;
                     return ((1 + n) * n) / 2;
+                }
+            },
+            watch: {
+                num: function(val) {
+                    var n = Number(val);
+                    if (Number.isNaN(n) || n < 1) return 0;
+                    this.fnSum = ((1 + n) * n) / 2;
+                }
+            },
+            methods: {
+                sumFunc: function() {
+                    var n = Number(this.num);
+                    if (Number.isNaN(n) || n < 1) return 0;
+                    this.fnSum = ((1 + n) * n) / 2;
                 }
             },
             created: function() {}
