@@ -80,6 +80,12 @@
         </a>
       </li>
     </ul>
+    <h2>Study Exmaple</h2>
+    <ul>
+      <li>
+        <router-link to="/test">컴포넌트를 만들어 보자꾸나</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
